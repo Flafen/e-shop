@@ -1,0 +1,63 @@
+.header {
+    margin: 10px auto;
+    display: flex;
+    max-width: 1400px;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.navBar {
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between ;
+    gap: 35px;
+    text-decoration: none;
+}
+
+.menuBar {
+    transform: translate(100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: auto;
+    font-size: 25px;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: transparent;
+    color: #121212;
+    border: none;
+    height: auto;
+    font-size: 25px;
+}
+
+.navItem {
+    background-color: transparent;
+    color: #121212;
+    border: none;
+    height: auto;
+    font-size: 25px;
+}
