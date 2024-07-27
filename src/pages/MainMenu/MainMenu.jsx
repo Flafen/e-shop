@@ -1,36 +1,16 @@
-import { useState, useEffect } from 'react'
-import './MainMenu.scss'
-import { StoriesSlider } from "../../Header/StoriesSlider/StoriesSlider"
-import { Body } from "../../Body/Body"
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import './MainMenu.scss';
+import { StoriesSlider } from "../../Header/StoriesSlider/StoriesSlider";
+import { Body } from "../../Body/Body";
 import dataJson from '../../data.json';
 
 export function MainMenu() {
-
-  const [data, setData] = useState(null);
-  
-  function saveToLocalStorage(key, value) {
-    if (value) {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-  }
-
-  function getFromLocalStorage(key) {
-    if (key) {
-      return JSON.parse(localStorage.getItem(key));
-    }
-  }
-
-  const storedMen = getFromLocalStorage("men");
-  const storedWomen = getFromLocalStorage("women");
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.cardData);
 
   useEffect(() => {
-    if (storedMen && storedWomen) {
-      setData({ men: storedMen, women: storedWomen });
-    } else if (dataJson) {
-      setData(dataJson);
-      saveToLocalStorage("men", dataJson.men);
-      saveToLocalStorage("women", dataJson.women);
-    }
+    dispatch({ type: "getData" });
   }, [dataJson]);
 
   if (!data) {
@@ -40,12 +20,7 @@ export function MainMenu() {
   return (
     <>
       <StoriesSlider></StoriesSlider>
-      <Body
-        men={storedMen }
-        women={storedWomen}
-        saveToLocalStorage={saveToLocalStorage}
-      ></Body>
+      <Body></Body>
     </>
-  )
+  );
 }
-

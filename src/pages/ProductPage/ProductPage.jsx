@@ -4,6 +4,7 @@ import { Tabs } from "./Tabs/Tabs";
 import { useParams } from "react-router-dom"
 import { useState } from "react";
 import dataJson from '../../data.json';
+import { useSelector } from "react-redux";
 
 export function getFromLocalStorage(key) {
         if (key && localStorage.getItem(key)) {
@@ -17,12 +18,11 @@ export function getFromLocalStorage(key) {
     }
 
 const ProductPage = ({}) => {
-    let storedMen = null;
-    let storedWomen = null;
+    const data = useSelector((state) => state.cardData.cards)
+    let storedMen = data.men;
+    let storedWomen = data.women;
  
     const {gender, id} = useParams()
-    storedMen = getFromLocalStorage("men");
-    storedWomen = getFromLocalStorage("women");
 
     let current = null
     if (gender === "men" && id<=storedMen.length) {
