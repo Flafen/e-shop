@@ -1,10 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Body.module.scss";
 import { Card } from "./Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getData } from "../store/actions";
 
 export function Body() {
+    const dispatch = useDispatch()
     const data = useSelector((state) => state.cardData.cards);
+
+    useEffect(() => {
+      if (!data.men && !data.women) {
+        getData(); // Диспатчим действие getData при монтировании компонента
+        console.log("useEffected!");
+      }
+    }, []);
 
   const markets = [
     "https://static.insales-cdn.com/r/VbDfycslrX0/rs:fit:500:500:1/plain/files/1/665/16630425/original/OZON_72d25ecdccb20a6da30882175ff85386.svg@svg",
@@ -48,7 +57,6 @@ export function Body() {
       <div className={styles.container}>
         {data[gender]
           .slice(0, maxNum)
-          .filter((item) => item)
           .map((item) => {
             return (
               <Card item={item} gender={gender} key={item.title}></Card>

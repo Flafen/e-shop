@@ -1,0 +1,7 @@
+.container {
+  width: 1408px;
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, 256px);
+  justify-content: space-between;
+}

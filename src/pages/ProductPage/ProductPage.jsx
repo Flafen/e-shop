@@ -3,34 +3,22 @@ import "./sizes.scss"
 import { Tabs } from "./Tabs/Tabs";
 import { useParams } from "react-router-dom"
 import { useState } from "react";
-import dataJson from '../../data.json';
-import { useSelector } from "react-redux";
-
-export function getFromLocalStorage(key) {
-        if (key && localStorage.getItem(key)) {
-          return JSON.parse(localStorage.getItem(key));
-        }
-        else {
-            storedMen = dataJson.men;
-            storedWomen = dataJson.women;
-            return dataJson
-        }
-    }
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductPage = ({}) => {
     const data = useSelector((state) => state.cardData.cards)
-    let storedMen = data.men;
-    let storedWomen = data.women;
+    const dispatch = useDispatch()
  
     const {gender, id} = useParams()
 
-    let current = null
-    if (gender === "men" && id<=storedMen.length) {
-        current = storedMen[id]
-    } else if (gender === "women") {
-        current = storedWomen[id]
-    } else {
-        console.log(storedMen, "H")
+    if(!data[gender][id]) {
+        dispatch({type: "getData"})
+    }
+
+    let current = data[gender][id]
+    
+    if (!current) {
+        console.log(data)
         return (
             <div className={styles.error}>
                 <h1>Ничего не найдено...</h1>
