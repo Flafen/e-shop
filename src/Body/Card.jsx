@@ -1,19 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
 import styles from "./Card.module.scss"
 import { Link } from "react-router-dom";
+import { addToCart, like } from "../store/actions";
 
 export function Card({item, gender}) {
-  const data = useSelector((state) => state.cardData.cards);
-  const dispatch = useDispatch()
-
-  function setLike(e) {
-    const targetId = e.target.closest("#heart-id").dataset.id;
-    dispatch({type:"like", gender: gender, id: targetId})
+  function setLike() {
+    like(gender, item.title)
   }
 
   return (
     <div className={styles.wrapper}>
-      <div onClick={setLike} id="heart-id" data-id={item.title} className={styles.like}>
+      <div onClick={setLike} className={styles.like}>
         {item.liked?<i className="fa-solid fa-heart"></i>:<i className="fa-regular fa-heart"></i>}
       </div>
       <Link to={`/Product/${gender}/${item.id}`} className={styles.wrapper}>

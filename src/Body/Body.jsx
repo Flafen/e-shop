@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./Body.module.scss";
 import { Card } from "./Card";
 import { useState, useEffect } from "react";
 import { getData } from "../store/actions";
 
 export function Body() {
-    const dispatch = useDispatch()
     const data = useSelector((state) => state.cardData.cards);
 
     useEffect(() => {
-      if (!data.men && !data.women) {
+      if (!data.men || !data.women) {
         getData(); // Диспатчим действие getData при монтировании компонента
         console.log("useEffected!");
       }
@@ -23,7 +22,21 @@ export function Body() {
   ];
 
   const [gender, setGender] = useState("men");
-  const [maxNum, setMaxNum] = useState(10);
+
+
+  const windowWidth = window.screen.width
+  let initialMaxNum;
+if (windowWidth>1400) {
+  initialMaxNum = 10;
+} else if (windowWidth > 1200) {
+  initialMaxNum = 8;
+} else if (windowWidth > 480) {
+  initialMaxNum = 6;
+} else {
+  initialMaxNum = 4;
+}
+
+  const [maxNum, setMaxNum] = useState(initialMaxNum);
 
   const [activated, setActivated] = useState(false);
 
@@ -34,7 +47,7 @@ export function Body() {
         <button
           onClick={() => {
             setGender("men");
-            setMaxNum(10);
+            setMaxNum(initialMaxNum);
             setActivated(false);
           }}
           className={gender === "men" ? `${styles.genderBtn} ${styles.activeBtn}` : `${styles.genderBtn}`}
@@ -44,7 +57,7 @@ export function Body() {
         <button
           onClick={() => {
             setGender("women");
-            setMaxNum(10);
+            setMaxNum(initialMaxNum);
             setActivated(false);
           }}
           className={gender === "women" ? `${styles.genderBtn} ${styles.activeBtn}` : `${styles.genderBtn}`}
@@ -75,7 +88,7 @@ export function Body() {
       </button>
 
       <h2 className={styles.bottom}>Мы на маркетплейсах</h2>
-      <div>
+      <div className={styles.marketplaces}>
         {markets.map((item) => {
           return <img key={item} src={item}></img>;
         })}

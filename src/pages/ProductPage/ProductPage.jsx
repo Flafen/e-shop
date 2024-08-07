@@ -1,21 +1,18 @@
 import styles from "./ProductPage.module.scss"
 import "./sizes.scss"
-import { Tabs } from "./Tabs/Tabs";
 import { useParams } from "react-router-dom"
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { addToCart, like } from "../../store/actions";
 
 const ProductPage = ({}) => {
     const data = useSelector((state) => state.cardData.cards)
-    const dispatch = useDispatch()
- 
-    const {gender, id} = useParams()
-
-    if(!data[gender][id]) {
-        dispatch({type: "getData"})
-    }
-
+    const {gender, id} = useParams()    
     let current = data[gender][id]
+    
+    const handleLikeBtn = () => {
+        like(gender, current.title)
+    }
     
     if (!current) {
         console.log(data)
@@ -31,7 +28,7 @@ const ProductPage = ({}) => {
         currency: 'RUB',
         minimumFractionDigits: 0,
       });
-
+    
     const [sizes, setSizes] = useState([
         {    
             id: 0,
@@ -55,10 +52,16 @@ const ProductPage = ({}) => {
         },
     ])
 
+    const [activeSize, setActiveSize] = useState("S")
     function setActiveBtn(item) {
         let newSizes = sizes.map(size => size.id === item.id ? { ...size, active: true } : { ...size, active: false });
+        setActiveSize(newSizes.find(item => item.active).value)
         setSizes(newSizes);
     }
+
+    function handleCartDispatch() {
+        addToCart(current.title, gender, activeSize)
+      }
     
   return (
     <div className={styles.wrapper}>
@@ -80,10 +83,17 @@ const ProductPage = ({}) => {
                 }
             </div>
             <div>
-                <button className={styles.purchaseBtn}>В корзину</button>
-                <button className={styles.likeBtn} >{current.liked?<i className="fa-solid fa-heart"></i>:<i className="fa-regular fa-heart"></i>}</button>
+                <button onClick={handleCartDispatch} className={styles.purchaseBtn}>В корзину</button>
+                <button onClick={handleLikeBtn} className={styles.likeBtn} >{current.liked?<i className="fa-solid fa-heart"></i>:<i className="fa-regular fa-heart"></i>}</button>
             </div>
-            <Tabs discription={current.discription} country={current.country} fabrics={current.fabrics} />
+            <div className={styles.discriptionWrapper}>
+            <p className={styles.discriptionTitle}>Описание</p>
+            <p>{current.discription}</p>
+        </div>
+        </div>
+        <div className={styles.discriptionWrapper2}>
+            <p className={styles.discriptionTitle}>Описание</p>
+            <p>{current.discription}</p>
         </div>
     </div>
   )

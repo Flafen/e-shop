@@ -13,3 +13,45 @@
 .Footer {
     flex: 0 0 auto;
 }
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+@media (max-width: 1200px) {
+    .layoutWrapper {
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 20px;
+    }
+
+    .wrapper {
+        flex-direction: column;
+    }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 768px */
+@media (max-width: 768px) {
+    .layoutWrapper {
+        max-width: calc(100% - 20px);
+        padding: 0 10px;
+        box-sizing: content-box;
+    }
+
+    .wrapper {
+        flex-direction: column;
+    }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 480px */
+@media (max-width: 480px) {
+    .layoutWrapper {
+        max-width: calc(100% - 10px);
+        padding: 0 5px;
+    }
+
+    .wrapper {
+        flex-direction: column;
+    }
+}

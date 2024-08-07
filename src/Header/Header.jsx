@@ -8,7 +8,7 @@ export function Header({setModalActive}) {
     <div className={styles.header}>
         <button onClick={()=>{setModalActive(true)}} href='#' className={styles.menuBar}>
             <i className="fa-solid fa-bars"></i>
-            <h2>меню</h2>
+            <h2 className={styles.menuBtn}>меню</h2>
         </button>
         
         <Link className={styles.logo} to="/">

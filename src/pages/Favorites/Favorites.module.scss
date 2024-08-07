@@ -1,7 +1,64 @@
 .container {
   width: 1408px;
-  margin: 22px auto 0;
+  margin: 30px auto 0;
   display: grid;
   grid-template-columns: repeat(5, 256px);
   justify-content: space-between;
+}
+
+.topic {
+  color: #333;
+}
+
+@media (max-width: 1400px) {
+  .container {
+    box-sizing: border-box;
+    width: 95%;
+    max-width: 1160px;
+    grid-template-columns: repeat(4, 256px);
+    margin-inline: auto;
+  }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 1150px */
+@media (max-width: 1200px) {
+  .container {
+    width: 87%;
+    max-width: 880px;
+    margin-inline: auto;
+    grid-template-columns: repeat(3, 256px);
+  }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 992px */
+@media (max-width: 992px) {
+  .container {
+    width: clamp(740px, 87%, 880px);
+    margin-inline: auto;
+    grid-template-columns: repeat(3, 230px);
+  }
+
+  .topic {
+    text-align: center;
+  }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 768px */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 230px);
+    width: clamp(480px, 80%, 530px);
+  }
+}
+
+
+/* Адаптивные стили для экранов с максимальной шириной 480px */
+@media (max-width: 480px) {
+  
+  .container {
+    width: clamp(320px, 80%, 530px);
+    grid-template-columns: repeat(1, 256px); /* Полная ширина для маленьких экранов */
+    justify-content: center;
+    padding: 0 10px; /* Добавляем отступы для маленьких экранов */
+  }
 }

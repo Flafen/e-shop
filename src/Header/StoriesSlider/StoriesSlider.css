@@ -9,9 +9,31 @@
     border-radius: 8px;
 }
 
-
 .story-photo {
     width: 180px;
     border-radius: 3px;
     margin: 4px;
 }
+
+  
+  /* Адаптивные стили для экранов с максимальной шириной 992px */
+  @media (max-width: 992px) {
+    .story-photo {
+        width: 140px;
+    }
+    .swiper-slide {
+        width: 148px !important;
+        height: 191px;
+        box-sizing: content-box;
+    }
+  }
+  
+  /* Адаптивные стили для экранов с максимальной шириной 768px */
+  @media (max-width: 768px) {
+
+  }
+  
+  /* Адаптивные стили для экранов с максимальной шириной 480px */
+  @media (max-width: 480px) {
+
+  }

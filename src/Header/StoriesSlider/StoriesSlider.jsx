@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { FreeMode, Navigation, Scrollbar, A11y, Autoplay} from 'swiper/modules';
+import { FreeMode, A11y, Autoplay} from 'swiper/modules';
 import "./StoriesSlider.css"
 
 const slides = [
@@ -33,21 +33,51 @@ const slides = [
     },
 ]
 
+let screenWidth = window.screen.width
+function handleResize() {
+    screenWidth = window.screen.width;
+}
+window.addEventListener('resize', handleResize);
+const spaceBetweenSlides = screenWidth > 992 ? 30 : 10;
+
+let slidesPerView;
+if (screenWidth > 1500) {
+    slidesPerView = 6.3
+} else if (screenWidth > 1400) {
+    slidesPerView = 6
+} else if (screenWidth > 1200) {
+    slidesPerView = 5.49
+} else if (screenWidth > 1100) {
+    slidesPerView = 5.12
+} else if (screenWidth > 992) {
+    slidesPerView = 4.7
+} else if (screenWidth > 768) {
+    slidesPerView = 4.45
+} else if (screenWidth > 580 ) {
+    slidesPerView = 3.5
+} else if (screenWidth > 480 ) {
+    slidesPerView = 2.92
+} else if (screenWidth > 440 ) {
+    slidesPerView = 2.62
+} else {
+    slidesPerView = 2.27
+}
+
 
 export function StoriesSlider() {
 
     return (
         <Swiper
             modules={[FreeMode, A11y, Autoplay]}
-            spaceBetween={30}
+            spaceBetween={spaceBetweenSlides}
             
             pagination={{
                 clickable: true,
               }}
             
-            slidesPerView={6}
+            slidesPerView={slidesPerView}
         >
-            {slides.map(slide => <SwiperSlide key={slide.name}><img className='story-photo'  src={slide.img} alt={slide.name}></img></SwiperSlide>)}
+            {slides.map(slide => <SwiperSlide key={slide.name}><img className='story-photo'  src={slide.img} alt={slide.name} /></SwiperSlide>)}
         </Swiper>
     )
 }

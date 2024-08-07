@@ -1,6 +1,6 @@
 .footer__wrapper {
     margin: 0 auto;
-    width: 1408px;
+    max-width: 1408px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,7 +15,8 @@
         margin: 50px 0 24px;
     }
 
-    .descrtiption{
+    .discrtiption{
+        width: 100%;
         max-width: 1100px;
         font-size: 18px;
         text-align: center;
@@ -45,3 +46,32 @@
     font-size: 14px;
     margin: 90px 0 0;
 }
+
+
+@media (max-width: 1200px) {
+    .footer__wrapper {
+        width: 100%;
+        padding: 0 20px;
+    }
+  }
+
+@media (max-width: 992px) {
+    .footer__wrapper {
+        width: calc(100% - 40px);
+        padding: 0 20px;
+    }
+
+    .footer__logo {
+        margin-block: 30px;
+    }
+
+    .discription {
+        font-size: 12px;
+    }
+
+    #copy {
+        font-size: 10px;
+        margin: 30px 0 0;
+        text-align: center;
+    }
+  }

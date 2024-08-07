@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React from 'react'
 import "./Modal.scss"
 
 export function Modal ({modalActive, setModalActive, children}) {

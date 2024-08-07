@@ -4,8 +4,7 @@
     max-width: 1400px;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
-    position: relative;
+    padding: 0 20px; /* Добавляем отступы по бокам */
 }
 
 h2 {
@@ -14,12 +13,10 @@ h2 {
 
 .navBar {
     width: 200px;
-    height: 100%;
-    position: absolute;
-    right: 0;
+    height: 62px;
     display: flex;
     align-items: center;
-    justify-content: space-between ;
+    justify-content: space-between;
     gap: 35px;
     text-decoration: none;
 }
@@ -60,4 +57,118 @@ button {
     border: none;
     height: auto;
     font-size: 25px;
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 1200px */
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 10px; 
+    }
+
+    .navBar {
+        width: 150px;
+        gap: 20px;
+    }
+
+    .menuBar {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 20px;
+    }
+
+    .navItem {
+        font-size: 20px;
+    }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 992px */
+@media (max-width: 992px) {
+
+    .navBar {
+        width: 150px;
+        gap: 10px;
+        z-index: 1;
+    }
+
+    .menuBar {
+        gap: 5px;
+        transform: translate(60%);
+    }
+
+    button {
+        font-size: 18px;
+        z-index: 1;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .navItem {
+        font-size: 18px;
+    }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 768px */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 5px; 
+    }
+
+    .navBar {
+        width: 100px;
+        gap: 5px;
+    }
+
+    .menuBar {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+
+    .logo {
+        svg {
+            height: 40px;
+        }
+    }
+
+    .navItem {
+        font-size: 16px;
+    }
+}
+
+/* Адаптивные стили для экранов с максимальной шириной 480px */
+@media (max-width: 480px) {
+    .header {
+        padding: 0; 
+        justify-content: space-between;
+    }
+
+    .navBar {
+        width: 80px;
+        gap: 15px;
+    }
+
+    .menuBar {
+        transform: translate(-10%);
+    }
+
+    .menuBtn {
+        display: none;
+    }
+
+    .logo {
+        transform: translate(-60%);
+        svg {
+            height: 30px;
+        }
+    }
+
+    .navItem {
+        font-size: 14px;
+    }
 }
