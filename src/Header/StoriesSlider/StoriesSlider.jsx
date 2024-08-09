@@ -60,7 +60,7 @@ if (screenWidth > 1500) {
 } else if (screenWidth > 440 ) {
     slidesPerView = 2.62
 } else {
-    slidesPerView = 2.27
+    slidesPerView = 2.18
 }
 
 
